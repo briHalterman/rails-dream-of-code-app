@@ -1,0 +1,20 @@
+Question 1
+
+41, randal@mosciski.test
+42, adelia_kihn@schowalter-hand.example
+
+trimester = Trimester.find_by(year: '2025', term: 'Spring')
+coding_class = CodingClass.find_by(title: 'Intro to Programming')
+current_course = Course.where(trimester_id: trimester, coding_class_id: coding_class)
+current_enrollments = Enrollment.joins(:student).where(course_id: current_course).pluck('students.id' 'students.email')
+
+Question 2
+
+25, theresa@torphy.example
+26, morton@ward-wintheiser.test
+
+trimester = Trimester.find_by(year: '2025', term: 'Spring')
+coding_class = CodingClass.find_by(title: 'Intro to Programming')
+current_course = Course.where(trimester_id: trimester, coding_class_id: coding_class)
+ungraded_enrollments = Enrollment.where(course_id: current_course, final_grade: nil)
+ungraded_enrollments_mentors = MentorEnrollmentAssignment.joins(:mentor).where(enrollment_id: ungraded_enrollments).pluck('mentors.id', 'mentors.email')
