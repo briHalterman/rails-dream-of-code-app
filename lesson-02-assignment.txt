@@ -1,0 +1,86 @@
+Question 1
+
+For each CodingClass, create a new Course record for that class in the Spring 2026 trimester.
+
+spring2026 = Trimester.Create(year: '2026', term: 'Spring', application_deadline: '2026-02-15', start_date: '2026-03-01', end_date: '2026-05-31')
+
+CodingClass.all.each do |coding_class|
+  Course.create(coding_class_id: coding_class.id, trimester_id: spring2026.id, max_enrollment: 25)
+end
+
+Question 2
+
+Create a new student record and enroll the student in the Intro to Programming course for the Spring 2026 trimester.
+
+intro_course = CodingClass.find_by(title: "Intro to Programming")
+spring2026 = Trimester.find_by(year: 2026, term: "Spring")
+course = Course.find_by(trimester_id: spring2026.id, coding_class_id: intro_course.id)
+new_student = Student.create(first_name: 'New', last_name: 'Student', email: 'new.student@test.com')
+enrollment = Enrollment.create(course_id: course.id, student_id: new_student.id)
+
+Find a mentor with no more than 2 students (enrollments) assigned and assign that mentor to your new student's enrollment.
+
+available_mentor_id = MentorEnrollmentAssignment.joins(:mentor).group(:mentor_id).having('COUNT(mentor_id) <= 2').pluck(:mentor_id).first
+MentorEnrollmentAssignment.create(mentor_id: available_mentor_id, enrollment_id: enrollment.id)
+
+Question 3 - Describe your project
+
+Write a description of your project idea. Try to answer the questions below in your description if they are applicable.
+
+I want to build a simple but versatile index card app. I like the idea of building this app because it would allow me to practice relationships in a variety of ways.
+Users of this app could be just about anybody, the same way almost anybody could use index cards in a variety of ways. It can be used for household management, it
+could be used to store recipes, and it can also function as flashcards for students. A user can create individual cards and store information on the front and back of
+them, can create decks in which the different cards can belong, can assign those decks to different categories and topics, and can assign keywords to the cards. The user can then use
+this system to organize and find index cards, view or update them, or use them as flashcards to go through a deck, flipping the cards, and temporarily removing cards
+from use in the deck as flashcards. I look forward to sketching out some simple wireframes.
+
+Question 4 - Design the data model for your project
+Start by just listing out what you think the "nouns" or tables (or models) will be in your application. What are the things you talk about when you describe the application?
+
+Users
+- email
+- password
+- created_at
+- updated_at
+
+Decks
+- id
+- title
+- created_at
+- updated_at
+
+CardDecks
+- id
+- deck_id
+- card_id
+- created_at
+- updated_at
+
+Cards
+- id
+- front_content
+- back_heading
+- back_content
+- keywords
+- created_at
+- updated_at
+
+Categories
+- id
+- title
+- created_at
+- updated_at
+
+DeckTopics
+- id
+- deck_id
+- topic_id
+- created_at
+- updated_at
+
+Topics
+- id
+- title
+- category_id
+- created_at
+- updated_at
