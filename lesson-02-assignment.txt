@@ -38,6 +38,7 @@ Question 4 - Design the data model for your project
 Start by just listing out what you think the "nouns" or tables (or models) will be in your application. What are the things you talk about when you describe the application?
 
 Users
+- id
 - email
 - password
 - created_at
