@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_08_05_165044) do
+ActiveRecord::Schema[8.0].define(version: 2025_08_07_171903) do
   create_table "coding_classes", force: :cascade do |t|
     t.string "title"
     t.text "description"
@@ -87,6 +87,12 @@ ActiveRecord::Schema[8.0].define(version: 2025_08_05_165044) do
     t.index ["enrollment_id"], name: "index_submissions_on_enrollment_id"
     t.index ["lesson_id"], name: "index_submissions_on_lesson_id"
     t.index ["mentor_id"], name: "index_submissions_on_mentor_id"
+  end
+
+  create_table "topics", force: :cascade do |t|
+    t.string "title"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "trimesters", force: :cascade do |t|
