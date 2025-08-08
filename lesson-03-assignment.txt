@@ -47,7 +47,3 @@
 5. Determine the generator command you'll need to create the migration file.
 
   bin/rails generate migration create_topics
-
-9. Determine the generator command you'll need to create the migration file for the join table.
-
-  bin/rails generate migration create_lesson_topics
