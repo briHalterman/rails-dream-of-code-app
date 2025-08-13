@@ -12,5 +12,9 @@ class Course < ApplicationRecord
     student_names
   end
 
+  def student_email_list
+    
+  end
+
   delegate :title, to: :coding_class
 end
