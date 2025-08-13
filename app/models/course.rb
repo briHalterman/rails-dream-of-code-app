@@ -13,7 +13,12 @@ class Course < ApplicationRecord
   end
 
   def student_email_list
-    []
+    student_emails = []
+    self.enrollments.each do |enrollment|
+      student_emails << "#{enrollment.student.email}"
+    end
+
+    student_emails
   end
 
   delegate :title, to: :coding_class
