@@ -29,4 +29,27 @@ RSpec.describe 'Mentors', type: :request do
       end
     end
   end
+
+  describe 'GET /mentors/:id', type: :request do
+    let!(:mentor) do
+      Mentor.create!(
+        first_name: 'Test name',
+        last_name: 'Surname',
+        email: 'test@email.com',
+        max_concurrent_students: 6
+      )
+    end
+
+    it 'returns a page containing the info of a mentor' do
+      get "/mentors/#{mentor.id}"
+      expect(response.body).to include('First name:')
+      expect(response.body).to include('Test name')
+      expect(response.body).to include('Last name:')
+      expect(response.body).to include('Surname')
+      expect(response.body).to include('Email:')
+      expect(response.body).to include('test@email.com')
+      expect(response.body).to include('Max concurrent students:')
+      expect(response.body).to include('6')
+    end
+  end
 end
