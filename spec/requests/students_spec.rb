@@ -25,7 +25,6 @@ RSpec.describe 'Students', type: :request do
           email: 'aj@test.com'
         )
       end
-
       it 'returns a page containing names of all students' do
         get '/students'
         expect(response.body).to include('First name:')
@@ -38,6 +37,26 @@ RSpec.describe 'Students', type: :request do
         get '/students'
         expect(response.body).not_to include('First name:')
       end
+    end
+  end
+
+  describe 'GET /students/:id', type: :request do
+    let!(:student2) do
+      Student.create(
+        first_name: 'AJ',
+        last_name: 'Suning',
+        email: 'aj@test.com'
+      )
+    end
+
+    it 'returns a page containing the info a student' do
+      get "/students/#{student2.id}"
+      expect(response.body).to include('First name:')
+      expect(response.body).to include('AJ')
+      expect(response.body).to include('Last name:')
+      expect(response.body).to include('Suning')
+      expect(response.body).to include('Email:')
+      expect(response.body).to include('aj@test.com')
     end
   end
 end
