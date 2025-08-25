@@ -1,8 +1,15 @@
+# Example
+# it 'returns a page containing names of all trimesters' do
+#   get '/trimesters'
+#   expect(response.body).to include('Term 1 2025')
+#   expect(response.body).to include('Term 2 2025')
+# end
+
 require 'rails_helper'
 
 RSpec.describe 'Students', type: :request do
   describe 'GET /students' do
-    context 'trimesters exist' do
+    context 'students exist' do
       let!(:student) do
         Student.create(
           first_name: 'KJ',
@@ -19,17 +26,17 @@ RSpec.describe 'Students', type: :request do
         )
       end
 
-      # Example
-      # it 'returns a page containing names of all trimesters' do
-      #   get '/trimesters'
-      #   expect(response.body).to include('Term 1 2025')
-      #   expect(response.body).to include('Term 2 2025')
-      # end
-
       it 'returns a page containing names of all students' do
         get '/students'
         expect(response.body).to include('First name:')
         expect(response.body).to include('AJ')
+      end
+    end
+
+    context 'students do not exist' do
+      it 'returns a page without any student info' do
+        get '/students'
+        expect(response.body).not_to include('First name:')
       end
     end
   end
