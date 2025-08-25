@@ -20,4 +20,5 @@ Rails.application.routes.draw do
   root 'home#index'
 
   get '/trimesters', to: 'trimesters#index'
+  get '/trimesters/:id', to: 'trimesters#show'
 end
