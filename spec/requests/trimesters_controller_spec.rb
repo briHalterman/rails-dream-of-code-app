@@ -22,12 +22,29 @@ RSpec.describe 'Trimesters', type: :request do
       end
     end
 
-    context 'trimesters exist' do
+    context 'trimesters do not exist' do
       it 'returns a page containing no names of trimesters' do
         get '/trimesters'
         expect(response.body).to include('Trimesters')
         expect(response.body).not_to include('<li>')
       end
+    end
+  end
+
+  describe 'GET /trimesters/:id', type: :request do
+    let!(:trimester) do
+      Trimester.create!(
+        term: 'Test Term',
+        year: '2025',
+        start_date: '2025-01-01',
+        end_date: '2025-01-01',
+        application_deadline: '2025-01-01'
+      )
+    end
+
+    it 'returns a page containing the info of a trimester' do
+      get "/trimesters/#{trimester.id}"
+      expect(response.body).to include('Test Term')
     end
   end
 end
