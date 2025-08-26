@@ -19,6 +19,14 @@ RSpec.describe 'Dashboard', type: :request do
       #   end_date: Date.today + 2.months - 1.year,
       #   application_deadline: Date.today - 1.year - 16.days
       # )
+
+      upcoming_trimester = Trimester.create!(
+        term: 'Upcoming term',
+        year: (Date.today + 6.months).year.to_s,
+        start_date: Date.today + 6.months - 1.day,
+        end_date: Date.today + 8.months,
+        application_deadline: Date.today + 6.months - 16.days
+      )
     end
 
     it 'returns a 200 OK status' do
@@ -38,6 +46,8 @@ RSpec.describe 'Dashboard', type: :request do
     end
 
     it 'displays the upcoming trimester' do
+      get '/dashboard'
+      expect(response.body).to include("Upcoming term - #{(Date.today + 6.months).year}")
     end
 
     it 'displays links to the courses in the upcoming trimester' do
