@@ -31,7 +31,7 @@ RSpec.describe 'Dashboard', type: :request do
 
     it 'displays the current trimester' do
       get '/dashboard'
-      expect(response.body).to include("Current term #{Date.today.year} Courses")
+      expect(response.body).to include("Current term - #{Date.today.year}")
     end
 
     it 'displays links to the courses in the current trimester' do
