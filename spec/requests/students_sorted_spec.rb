@@ -7,6 +7,7 @@ RSpec.describe "StudentsSorted", type: :request do
 
       expect(response).to have_http_status(:ok)
     end
+    
     context 'students exist' do
       it 'lists the students alphabetically' do
         student1 = Student.create!(first_name: 'Colby', last_name: 'Johnson', email: 'cj@mail.com')

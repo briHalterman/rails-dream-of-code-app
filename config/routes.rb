@@ -17,7 +17,8 @@ Rails.application.routes.draw do
 
   get '/dashboard', to: 'admin_dashboard#index'
 
-  get '/students/sorted', to: 'students#sorted'
+  get '/students/recent', to: 'students#recent', as: 'recent_students'
+  get '/students/sorted', to: 'students#sorted', as: 'sorted_students'
 
   resources :students
   resources :mentors

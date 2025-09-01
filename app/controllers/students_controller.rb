@@ -57,6 +57,11 @@ class StudentsController < ApplicationController
     end
   end
 
+  # GET /students/recent
+  def recent
+    @students = Student.order(created_at: :desc).limit(10)
+  end
+
   # GET /students/sorted
   def sorted
     @students = Student.order(:last_name, :first_name)
