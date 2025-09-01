@@ -28,6 +28,7 @@ RSpec.describe 'Students', type: :request do
       it 'returns a page containing names of all students' do
         get '/students'
         expect(response.body).to include('First name:')
+        expect(response.body).to include('KJ')
         expect(response.body).to include('AJ')
       end
     end
