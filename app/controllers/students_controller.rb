@@ -57,6 +57,11 @@ class StudentsController < ApplicationController
     end
   end
 
+  # GET /students/sorted
+  def sorted
+    @students = Student.order(:last_name, :first_name)
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_student

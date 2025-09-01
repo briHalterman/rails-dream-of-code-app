@@ -1,11 +1,4 @@
 Rails.application.routes.draw do
-  resources :students
-  resources :mentors
-  resources :enrollments
-  resources :mentor_enrollment_assignments
-  resources :lessons
-  resources :courses
-  resources :coding_classes
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
@@ -23,4 +16,14 @@ Rails.application.routes.draw do
   get '/trimesters/:id', to: 'trimesters#show'
 
   get '/dashboard', to: 'admin_dashboard#index'
+
+  get '/students/sorted', to: 'students#sorted'
+
+  resources :students
+  resources :mentors
+  resources :enrollments
+  resources :mentor_enrollment_assignments
+  resources :lessons
+  resources :courses
+  resources :coding_classes
 end

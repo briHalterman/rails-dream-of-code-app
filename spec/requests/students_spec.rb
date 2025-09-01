@@ -60,20 +60,4 @@ RSpec.describe 'Students', type: :request do
       expect(response.body).to include('aj@test.com')
     end
   end
-
-  # describe "GET /students/sorted" do
-  #   it 'lists the students alphabetically' do
-  #     student1 = Student.create!(first_name: 'Colby', last_name: 'Johnson', email: 'cj@mail.com')
-  #     student2 = Student.create!(first_name: 'Reggie', last_name: 'Ano', email: 'ra@mail.com')
-
-  #     get '/students/sorted'
-
-  #     expect(response.body).to include('Johnson, Colby', 'Ano, Reggie')
-  #     expect(response.body).to match(/Ano, Reggie.*Johnson, Colby/m)
-  #   end
-
-  #   it 'links each name to the student show page' do
-
-  #   end
-  # end
 end
