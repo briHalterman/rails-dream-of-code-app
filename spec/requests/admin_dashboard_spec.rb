@@ -1,3 +1,6 @@
+# displays links to current semester
+# context 'current trimester exists'...
+
 require 'rails_helper'
 
 RSpec.describe 'Dashboard', type: :request do
@@ -43,6 +46,8 @@ RSpec.describe 'Dashboard', type: :request do
     end
 
     it 'displays links to the courses in the current trimester' do
+      # get '/dashboard'
+      # expect(response.body)
     end
 
     it 'displays the upcoming trimester' do

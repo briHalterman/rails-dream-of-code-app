@@ -13,6 +13,13 @@
 
 <% if @upcoming_trimester %>
   <h2><%= "#{@upcoming_trimester.term} - #{@upcoming_trimester.year}" %></h2>
+  <ul>
+    <% @upcoming_trimester.courses.each do |course| %>
+      <li>
+        <a href=""><%= course.coding_class.title %></a>
+      </li>
+    <% end %>
+  </ul>
 <% else %>
   <p>No upcoming trimester</p>
 <% end %>
