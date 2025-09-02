@@ -3,7 +3,7 @@
   <ul>
     <% @current_trimester.courses.each do |course| %>
       <li>
-        <a href=""><%= course.coding_class.title %></a>
+        <a href="<%= course_path(course) %>"><%= course.coding_class.title %></a>
       </li>
     <% end %>
   </ul>
@@ -16,7 +16,7 @@
   <ul>
     <% @upcoming_trimester.courses.each do |course| %>
       <li>
-        <a href=""><%= course.coding_class.title %></a>
+        <a href="<%= course_path(course) %>"><%= course.coding_class.title %></a>
       </li>
     <% end %>
   </ul>

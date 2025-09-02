@@ -25,6 +25,7 @@ RSpec.describe 'Students', type: :request do
           email: 'aj@test.com'
         )
       end
+      
       it 'returns a page containing names of all students' do
         get '/students'
         expect(response.body).to include('First name:')

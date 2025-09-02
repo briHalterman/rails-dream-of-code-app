@@ -1,4 +1,3 @@
-# displays links to current semester
 # context 'current trimester exists'...
 
 require 'rails_helper'
@@ -15,7 +14,7 @@ RSpec.describe 'Dashboard', type: :request do
       )
 
       # Define past_trimester here and uncomment it when ready
-      # past_trimester = Trimester/create!(
+      # past_trimester = Trimester.create!(
       #   term: 'Past term',
       #   year: '(Date.today.year - 1year).to_s',
       #   start_date: Date.today - 1.year - 1.day,
@@ -29,6 +28,34 @@ RSpec.describe 'Dashboard', type: :request do
         start_date: Date.today + 6.months - 1.day,
         end_date: Date.today + 8.months,
         application_deadline: Date.today + 6.months - 16.days
+      )
+
+      coding_class1 = CodingClass.create!(
+        title: 'Intro to Programming'
+      )
+
+      coding_class2 = CodingClass.create!(
+        title: 'PHP'
+      )
+
+      @current_course1 = Course.create!(
+        coding_class_id: coding_class1.id,
+        trimester_id: current_trimester.id
+      )
+
+      @current_course2 = Course.create!(
+        coding_class_id: coding_class2.id,
+        trimester_id: current_trimester.id
+      )
+
+      @upcoming_course1 = Course.create!(
+        coding_class_id: coding_class1.id,
+        trimester_id: upcoming_trimester.id
+      )
+
+      @upcoming_course2 = Course.create!(
+        coding_class_id: coding_class2.id,
+        trimester_id: upcoming_trimester.id
       )
     end
 
@@ -46,8 +73,9 @@ RSpec.describe 'Dashboard', type: :request do
     end
 
     it 'displays links to the courses in the current trimester' do
-      # get '/dashboard'
-      # expect(response.body)
+      get '/dashboard'
+      expect(response.body).to include("/courses/#{@current_course1.id}")
+      expect(response.body).to include("/courses/#{@current_course2.id}")
     end
 
     it 'displays the upcoming trimester' do
@@ -56,6 +84,9 @@ RSpec.describe 'Dashboard', type: :request do
     end
 
     it 'displays links to the courses in the upcoming trimester' do
+      get '/dashboard'
+      expect(response.body).to include("/courses/#{@upcoming_course1.id}")
+      expect(response.body).to include("/courses/#{@upcoming_course2.id}")
     end
   end
 end
