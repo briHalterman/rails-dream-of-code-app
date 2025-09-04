@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # context 'current trimester exists'...
 
 require 'rails_helper'

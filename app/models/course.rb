@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Course < ApplicationRecord
   belongs_to :coding_class
   belongs_to :trimester
@@ -5,7 +7,7 @@ class Course < ApplicationRecord
 
   def student_name_list
     student_names = []
-    self.enrollments.each do |enrollment|
+    enrollments.each do |enrollment|
       student_names << "#{enrollment.student.first_name} #{enrollment.student.last_name}"
     end
 
@@ -14,8 +16,8 @@ class Course < ApplicationRecord
 
   def student_email_list
     student_emails = []
-    self.enrollments.each do |enrollment|
-      student_emails << "#{enrollment.student.email}"
+    enrollments.each do |enrollment|
+      student_emails << enrollment.student.email.to_s
     end
 
     student_emails

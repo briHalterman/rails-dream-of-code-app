@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class TrimestersController < ApplicationController
   def index
     @trimesters = Trimester.all

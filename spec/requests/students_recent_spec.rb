@@ -1,7 +1,9 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
-RSpec.describe "StudentsRecent", type: :request do
-  describe "GET /students_recent" do
+RSpec.describe 'StudentsRecent', type: :request do
+  describe 'GET /students_recent' do
     it 'responds with 200 OK' do
       get '/students/recent'
       expect(response).to have_http_status(:ok)
@@ -9,8 +11,10 @@ RSpec.describe "StudentsRecent", type: :request do
 
     context 'students exist' do
       it 'lists the most recently created students first' do
-        old_student = Student.create!(first_name: 'Ada', last_name: 'Lovelace', email: 'a@e.com', created_at: 2.days.ago)
-        new_student = Student.create!(first_name: 'Grace', last_name: 'Hopper', email: 'g@e.com', created_at: 1.hour.ago)
+        Student.create!(first_name: 'Ada', last_name: 'Lovelace', email: 'a@e.com',
+                        created_at: 2.days.ago)
+        Student.create!(first_name: 'Grace', last_name: 'Hopper', email: 'g@e.com',
+                        created_at: 1.hour.ago)
 
         get '/students/recent'
 

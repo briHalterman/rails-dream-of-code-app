@@ -1,7 +1,9 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
-RSpec.describe "Courses", type: :request do
-  describe "GET /courses/:id" do
+RSpec.describe 'Courses', type: :request do
+  describe 'GET /courses/:id' do
     let!(:coding_class) do
       CodingClass.create!(
         title: 'Intro to Programming'
@@ -55,7 +57,7 @@ RSpec.describe "Courses", type: :request do
       )
     end
 
-    it "responds with 200 OK" do
+    it 'responds with 200 OK' do
       get "/courses/#{course.id}"
       expect(response).to have_http_status(:ok)
     end
