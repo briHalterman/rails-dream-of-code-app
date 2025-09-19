@@ -1,0 +1,13 @@
+<h1>Alphabetical Student Roster</h1>
+
+<% if @students.any? %>
+  <ul>
+    <% @students.each do |student| %>
+      <li>
+        <a href="<%= student_path(student) %>"><%= "#{student.last_name}, #{student.first_name}" %></a>
+      </li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>No students yet</p>
+<% end %>

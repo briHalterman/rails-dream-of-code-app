@@ -1,0 +1,13 @@
+<h1>Recent Students</h1>
+
+<% if @students.any? %>
+  <ul>
+    <% @students.each do |student| %>
+      <li>
+        <a href="<%= student_path(student) %>"><%= "#{student.first_name} #{student.last_name}"%></a> - <%= student.created_at.to_formatted_s(:long)%>
+      </li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>No students yet</p>
+<% end %>
