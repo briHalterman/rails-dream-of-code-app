@@ -31,4 +31,5 @@ Rails.application.routes.draw do
     resources :submissions
   end
   resources :coding_classes
+  resources :trimesters
 end

@@ -49,4 +49,62 @@ RSpec.describe 'Trimesters', type: :request do
       expect(response.body).to include('Test Term')
     end
   end
+
+  describe 'GET /trimesters/:id/edit' do
+    let!(:trimester) do
+      Trimester.create!(
+        term: 'Test Term',
+        year: '2025',
+        start_date: '2025-01-01',
+        end_date: '2025-01-01',
+        application_deadline: '2025-01-01'
+      )
+    end
+
+    it 'displays the application deadline label' do
+      get "/trimesters/#{trimester.id}/edit"
+      expect(response.body).to include('Application deadline')
+    end
+  end
+
+  describe 'PUT /trimesters/:id' do
+    let!(:trimester) do
+      Trimester.create!(
+        term: 'Test Term',
+        year: '2025',
+        start_date: '2025-01-01',
+        end_date: '2025-01-01',
+        application_deadline: '2025-01-01'
+      )
+    end
+
+    it "updates a trimester's application deadline when deadline is valid and trimester exists" do
+      put "/trimesters/#{trimester.id}", params: {
+        trimester: { application_deadline: "2026-01-01"}
+      }
+      # Test redirect
+      expect(response).to redirect_to(trimester)
+      # Reload trimester to refresh data and assert that title is updated
+      trimester.reload
+      expect(trimester.application_deadline.to_s).to eq("2026-01-01")
+    end
+
+    it "responds with 400 status when no application deadline is provided" do
+      put "/trimesters/#{trimester.id}"
+
+      expect(response).to have_http_status(:bad_request)
+    end
+
+    xit "responds with 400 status when application deadline is not a valid date" do
+      put "/trimesters/#{trimester.id}", params: {
+        trimester: { application_deadline: "not a date"}
+      }
+
+      expect(response).to have_http_status(:bad_request)
+    end
+
+    it 'responds with 404 status when trimester id does not belong to an existing trimester' do
+
+    end
+  end
 end
