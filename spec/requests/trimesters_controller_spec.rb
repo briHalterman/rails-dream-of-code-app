@@ -95,7 +95,7 @@ RSpec.describe 'Trimesters', type: :request do
       expect(response).to have_http_status(:bad_request)
     end
 
-    xit "responds with 400 status when application deadline is not a valid date" do
+    it "responds with 400 status when application deadline is not a valid date" do
       put "/trimesters/#{trimester.id}", params: {
         trimester: { application_deadline: "not a date"}
       }
@@ -104,7 +104,11 @@ RSpec.describe 'Trimesters', type: :request do
     end
 
     it 'responds with 404 status when trimester id does not belong to an existing trimester' do
+      put "/trimesters/nope", params: {
+        trimester: { application_deadline: "trimester does not exist" }
+      }
 
+      expect(response).to have_http_status(:not_found)
     end
   end
 end

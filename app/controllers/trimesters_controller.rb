@@ -18,12 +18,12 @@ class TrimestersController < ApplicationController
     @trimester = Trimester.find(params[:id])
 
     respond_to do |format|
-      if @trimester.update(trimester_params)
+      if trimester_params[:application_deadline].present? &&  @trimester.update(trimester_params)
         format.html { redirect_to @trimester, notice: 'Trimester was successfully updated.'}
         format.json { render :show, status: :created, location: @trimester }
       else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @trimester.errors, status: :unprocessable_entity }
+        format.html { render :edit, status: :bad_request }
+        format.json { render json: @trimester.errors, status: :bad_request }
       end
     end
   end
