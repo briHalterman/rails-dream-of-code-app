@@ -11,7 +11,6 @@ class TrimestersController < ApplicationController
 
   def edit
     @trimester = Trimester.find(params[:id])
-    # @coding_classes = CodingClass.all
   end
 
   def update
