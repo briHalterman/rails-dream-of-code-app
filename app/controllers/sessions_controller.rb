@@ -13,7 +13,13 @@ class SessionsController < ApplicationController # rubocop:disable Style/Documen
     user = User.find_by(username: params[:username])
 
     if user
-      # Success
+      if user.authenticate(params[:password])
+        # Success
+        #
+      else
+        flash.now[:alert] = 'Invalid username or password.'
+        render :new
+      end
     else
       flash.now[:alert] = 'Invalid username or password.'
       render :new
