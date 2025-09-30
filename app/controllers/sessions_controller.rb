@@ -29,5 +29,10 @@ class SessionsController < ApplicationController # rubocop:disable Style/Documen
     end
   end
 
-  def destroy; end
+  def destroy
+    session.delete(:user_id)
+    session.delete(:role)
+    flash[:notice] = 'You have successfully logged out.'
+    redirect_to root_path, status: :see_other
+  end
 end
