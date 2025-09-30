@@ -15,7 +15,10 @@ class SessionsController < ApplicationController # rubocop:disable Style/Documen
     if user
       if user.authenticate(params[:password])
         # Success
-        #
+        # Let's set user_id and also role
+        session[:user_id] = user.id
+        session[:role] = user.role
+        redirect_to root_path
       else
         flash.now[:alert] = 'Invalid username or password.'
         render :new
