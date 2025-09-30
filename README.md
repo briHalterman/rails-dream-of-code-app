@@ -114,3 +114,16 @@ bundle exec rspec spec/models/course_spec.rb:36
 6. Only Dream of Code staff should be able to view student enrollments, create courses and update trimesters. Only students should be able to create assignment submissions. Only mentors should be able to update assignment submissions.
 7. We need API endpoints to integrate with external apps. a. We need an endpoint that returns current course data. b. We need an endpoint that returns student enrollment data in a specific format (per course).
 8. We need an API endpoint that allows for the creation of a student record.
+
+---
+
+#### Test Login Roles
+
+**Username:** Administrator
+**Password:** secret
+
+**Username:** Student
+**Password:** secret
+
+**Mentor:** Mentor
+**Password:** secret

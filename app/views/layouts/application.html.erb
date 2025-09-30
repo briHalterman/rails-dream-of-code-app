@@ -49,6 +49,16 @@
       </nav>
     </div>
     <div class='container main-container'>
+      <%# Render flash messages: %>
+      <% flash.each do |key, message| %>
+        <div class="alert alert-<%= key == "alert" ? "danger" : "success" %>">
+          <%= message %>
+        </div>
+      <% end %>
+      <%# Flash rendering code adapted with assistance from ChatGPT (OpenAI). %>
+
+      <% debug(flash) %>
+
       <%= yield %>
     </div>
   </body>
