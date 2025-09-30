@@ -14,6 +14,10 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   root 'home#index'
 
+  get 'login', to: 'sessions#new'
+  post 'login', to: 'sessions#create'
+  delete 'login', to: 'sessions#destroy'
+
   get '/trimesters', to: 'trimesters#index'
   get '/trimesters/:id', to: 'trimesters#show'
 
