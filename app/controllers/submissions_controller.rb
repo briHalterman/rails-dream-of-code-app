@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
-class SubmissionsController < ApplicationController
+class SubmissionsController < ApplicationController # rubocop:disable Style/Documentation
+  before_action :require_student, only: %i[new create]
   # GET /submissions/new
   def new
     @course = Course.find(params[:course_id])

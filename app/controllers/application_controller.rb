@@ -11,4 +11,11 @@ class ApplicationController < ActionController::Base # rubocop:disable Style/Doc
       redirect_to root_path
     end
   end
+
+  def require_student
+    return unless session[:role] != 'student'
+
+    flash[:alert] = 'You do not have access to that page'
+    redirect_to root_path
+  end
 end
