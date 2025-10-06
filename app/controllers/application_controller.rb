@@ -18,4 +18,11 @@ class ApplicationController < ActionController::Base # rubocop:disable Style/Doc
     flash[:alert] = 'You do not have access to that page'
     redirect_to root_path
   end
+
+  def require_mentor
+    return unless session[:role] != 'mentor'
+
+    flash[:alert] = 'You do not have access to that page'
+    redirect_to root_path
+  end
 end

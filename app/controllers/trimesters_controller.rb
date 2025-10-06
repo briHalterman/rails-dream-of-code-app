@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class TrimestersController < ApplicationController # rubocop:disable Style/Documentation
-  before_action :require_admin, only: %i[edit update]
+  before_action :require_admin, only: %i[edit update] # Only admins should be able to create, update and delete trimesters # rubocop:disable Layout/LineLength
 
   def index
     @trimesters = Trimester.all

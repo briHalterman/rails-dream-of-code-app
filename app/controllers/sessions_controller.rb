@@ -3,7 +3,7 @@
 class SessionsController < ApplicationController # rubocop:disable Style/Documentation
   def new; end
 
-  def create
+  def create # rubocop:disable Metrics/AbcSize,Metrics/MethodLength
     # 1. Look for a user with the username in the params
     # 2. If a user is found, try to authenticate them with the provided password
     # 3. If authentication is successful, set user info in a session
