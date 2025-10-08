@@ -111,7 +111,7 @@ bundle exec rspec spec/models/course_spec.rb:36
 3. On the dashboard, there should be a link to a form for adding a new course. &#x2611;
 4. On each course page, there should be a link to a form to enroll a student in the course. &#x2611;
 5. We need to be able to update the application deadline for the upcoming trimester. &#x2611;
-6. Only Dream of Code staff should be able to view student enrollments, create courses and update trimesters. Only students should be able to create assignment submissions. Only mentors should be able to update assignment submissions.
+6. Only Dream of Code staff should be able to view student enrollments, create courses and update trimesters. Only students should be able to create assignment submissions. Only mentors should be able to update assignment submissions. &#x2611;
 7. We need API endpoints to integrate with external apps. a. We need an endpoint that returns current course data. b. We need an endpoint that returns student enrollment data in a specific format (per course).
 8. We need an API endpoint that allows for the creation of a student record.
 
