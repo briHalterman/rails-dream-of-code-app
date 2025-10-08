@@ -9,6 +9,9 @@ module Api
 
         # debugger
 
+        # Expected data shape:
+        # Sample data
+        #
         # courses_hash = {
         #   courses: [
         #     {
