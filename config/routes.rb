@@ -36,4 +36,10 @@ Rails.application.routes.draw do
   end
   resources :coding_classes
   resources :trimesters
+
+  namespace :api do
+    namespace :v1 do
+      get '/courses', to: 'courses#index'
+    end
+  end
 end
