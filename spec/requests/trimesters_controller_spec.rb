@@ -72,7 +72,7 @@ RSpec.describe 'Trimesters', type: :request do # rubocop:disable Metrics/BlockLe
     before do
       post '/login', params: {
         username: user.username,
-        password: user.password
+        password: 'secret'
       }
     end
 
@@ -104,7 +104,7 @@ RSpec.describe 'Trimesters', type: :request do # rubocop:disable Metrics/BlockLe
     before do
       post '/login', params: {
         username: user.username,
-        password: user.password
+        password: 'secret'
       }
     end
 

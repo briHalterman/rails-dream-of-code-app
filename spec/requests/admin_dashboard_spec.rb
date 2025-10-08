@@ -17,7 +17,7 @@ RSpec.describe 'Dashboard', type: :request do # rubocop:disable Metrics/BlockLen
     before do
       post '/login', params: {
         username: user.username,
-        password: user.password
+        password: 'secret'
       }
     end
 
