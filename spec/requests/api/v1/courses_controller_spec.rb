@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe 'Api::V1::Courses', type: :request, skip: true do
+RSpec.describe 'Api::V1::Courses', type: :request do # rubocop:disable Metrics/BlockLength
   # Set up current, past and future trimesters and courses for each
   let!(:current_trimester) do
     Trimester.create!(
