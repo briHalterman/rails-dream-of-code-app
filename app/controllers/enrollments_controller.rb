@@ -1,7 +1,8 @@
 # frozen_string_literal: true
 
-class EnrollmentsController < ApplicationController
+class EnrollmentsController < ApplicationController # rubocop:disable Style/Documentation
   before_action :set_enrollment, only: %i[show edit update destroy]
+  before_action :require_admin, only: %i[index] # Only admins should be able to view student enrollments
 
   # GET /enrollments or /enrollments.json
   def index

@@ -1,7 +1,8 @@
 # frozen_string_literal: true
 
-class CoursesController < ApplicationController
+class CoursesController < ApplicationController # rubocop:disable Style/Documentation
   before_action :set_course, only: %i[show edit update destroy]
+  before_action :require_admin, only: %i[new create edit update destroy] # Only admins should be able to create, update and delete courses # rubocop:disable Layout/LineLength
 
   # GET /courses or /courses.json
   def index
@@ -19,7 +20,11 @@ class CoursesController < ApplicationController
   end
 
   # GET /courses/1/edit
-  def edit; end
+  def edit
+    @course = Course.find(params[:id])
+    @coding_classes = CodingClass.all
+    @trimesters = Trimester.all
+  end
 
   # POST /courses or /courses.json
   def create

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class CodingClassesController < ApplicationController
+class CodingClassesController < ApplicationController # rubocop:disable Style/Documentation
   before_action :set_coding_class, only: %i[show edit update destroy]
 
   # GET /coding_classes or /coding_classes.json

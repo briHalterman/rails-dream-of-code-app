@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
-class TrimestersController < ApplicationController
+class TrimestersController < ApplicationController # rubocop:disable Style/Documentation
+  before_action :require_admin, only: %i[edit update] # Only admins should be able to create, update and delete trimesters # rubocop:disable Layout/LineLength
+
   def index
     @trimesters = Trimester.all
   end
@@ -11,15 +13,14 @@ class TrimestersController < ApplicationController
 
   def edit
     @trimester = Trimester.find(params[:id])
-    # @coding_classes = CodingClass.all
   end
 
   def update
     @trimester = Trimester.find(params[:id])
 
     respond_to do |format|
-      if trimester_params[:application_deadline].present? &&  @trimester.update(trimester_params)
-        format.html { redirect_to @trimester, notice: 'Trimester was successfully updated.'}
+      if trimester_params[:application_deadline].present? && @trimester.update(trimester_params)
+        format.html { redirect_to @trimester, notice: 'Trimester was successfully updated.' }
         format.json { render :show, status: :created, location: @trimester }
       else
         format.html { render :edit, status: :bad_request }

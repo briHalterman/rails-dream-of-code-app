@@ -4,10 +4,25 @@
 
 require 'rails_helper'
 
-RSpec.describe 'Dashboard', type: :request do
-  describe 'GET /dashboard' do
-    context 'when current and upcoming trimesters exist' do
-      before do
+RSpec.describe 'Dashboard', type: :request do # rubocop:disable Metrics/BlockLength
+  describe 'GET /dashboard' do # rubocop:disable Metrics/BlockLength
+    let!(:user) do
+      User.create!(
+        username: 'User',
+        password: 'secret',
+        role: 'admin'
+      )
+    end
+
+    before do
+      post '/login', params: {
+        username: user.username,
+        password: 'secret'
+      }
+    end
+
+    context 'when current and upcoming trimesters exist' do # rubocop:disable Metrics/BlockLength
+      before do # rubocop:disable Metrics/BlockLength
         current_trimester = Trimester.create!(
           term: 'Current term',
           year: Date.today.year.to_s,
