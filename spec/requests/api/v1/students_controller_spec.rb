@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe 'Api::V1::Students', type: :request, skip: true do
+RSpec.describe 'Api::V1::Students', type: :request do
   describe 'POST /api/v1/students' do
     let(:valid_attributes) do
       {
