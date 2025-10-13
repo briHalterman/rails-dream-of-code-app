@@ -6,9 +6,12 @@ module Api
       skip_before_action :verify_authenticity_token
 
       def create # rubocop:disable Metrics/MethodLength
+        # puts 'you made it to the create method'
+
         student = Student.new(student_params)
 
-        if student.save
+        if student.save!
+          # puts 'it saved!'
           student_hash = {
             id: student.id,
             first_name: student.first_name,
@@ -17,6 +20,7 @@ module Api
           }
           render json: { student: student_hash }, status: :created
         else
+          # puts 'it not save'
           render json: { errors: student.errors.full_messages }, status: :unprocessable_entity
         end
       end
